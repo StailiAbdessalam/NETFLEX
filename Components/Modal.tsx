@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MuiModel from "@mui/material/Modal";
 import { modalState, movieState } from "../atoms/modalAtom";
 import { useRecoilState } from "recoil";
+import ReactPlayer from "react-player/lazy";
 import {
   CheckIcon,
   PlusIcon,
@@ -11,14 +12,16 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { FaPlay } from "react-icons/fa";
-import { Element } from "../typing";
+import { Element, Genre } from "../typing";
 
 const Modal = () => {
   //   const showModel = useRecoilValue(modalState);
   const [showModel, setShowModel] = useRecoilState(modalState);
   const [movie, setMovie] = useRecoilState(movieState);
   const [trailer, setTrailer] = useState<string>("");
+  const [genres, setGenres] = useState<Genre[]>([]);
   const [data, setData] = useState();
+  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     if (!movie) return;
@@ -38,8 +41,14 @@ const Modal = () => {
         const index = data.videos.results.findIndex(
           (element: Element) => element.type === "Trailer"
         );
+        setTrailer(data.videos.results[index].key);
+      }
+      if (data?.genres) {
+        setGenres(data.genres);
       }
     }
+    console.log(movie);
+
     fetchMovie();
   }, [movie]);
 
@@ -47,7 +56,11 @@ const Modal = () => {
     setShowModel(false);
   };
   return (
-    <MuiModel open={showModel} onClose={handlClose}>
+    <MuiModel
+      open={showModel}
+      onClose={handlClose}
+      className="fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide"
+    >
       <>
         {/* <Toaster position="bottom-center" /> */}
         <button
@@ -58,14 +71,14 @@ const Modal = () => {
         </button>
 
         <div className="relative pt-[56.25%]">
-          {/* <ReactPlayer
+          <ReactPlayer
             url={`https://www.youtube.com/watch?v=${trailer}`}
             width="100%"
             height="100%"
             style={{ position: "absolute", top: "0", left: "0" }}
             playing
             muted={muted}
-          /> */}
+          />
           <div className="absolute bottom-10 flex w-full items-center justify-between px-10">
             <div className="flex space-x-2">
               <button className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-[#e6e6e6]">
@@ -83,13 +96,13 @@ const Modal = () => {
                 <ThumbUpIcon className="h-6 w-6" />
               </button>
             </div>
-            {/* <button className="modalButton" onClick={() => setMuted(!muted)}>
+            <button className="modalButton" onClick={() => setMuted(!muted)}>
               {muted ? (
                 <VolumeOffIcon className="h-6 w-6" />
               ) : (
                 <VolumeUpIcon className="h-6 w-6" />
               )}
-            </button> */}
+            </button>
           </div>
         </div>
         <div className="flex space-x-16 rounded-b-md bg-[#181818] px-10 py-8">
