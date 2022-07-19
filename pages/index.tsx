@@ -2,6 +2,7 @@ import Head from "next/head";
 import Banner from "../Components/Banner";
 import Header from "../Components/Header";
 import Row from "../Components/Row";
+import useAuth from "../hooks/useAuth";
 import { Movie } from "../typing";
 import requests from "../utils/requestq";
 interface Props {
@@ -25,6 +26,8 @@ const Home = ({
   topRated,
   trendingNow,
 }: Props) => {
+  const { logout, loading } = useAuth();
+  if (loading) return null;
   return (
     <div className="lg:h-[140vh]">
       <Head>

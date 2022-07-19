@@ -60,7 +60,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const signUp = async (email: string, password: string) => {
     setLoading(true);
-
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setUser(userCredential.user);
@@ -106,8 +105,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   );
 };
 
-// Let's only export the `useAuth` hook instead of the context.
-// We only want to use the hook directly and never the context comopnent.
 export default function useAuth() {
   return useContext(AuthContext);
 }
