@@ -1,13 +1,14 @@
 import Head from "next/head";
-import { useRecoilValue } from "recoil";
-import { modalState } from "../atoms/modalAtom";
 import Banner from "../Components/Banner";
 import Header from "../Components/Header";
 import Row from "../Components/Row";
-import useAuth from "../hooks/useAuth";
+import Modal from "../Components/Modal";
+import { modalState } from "../atoms/modalAtom";
+import { useRecoilValue } from "recoil";
 import { Movie } from "../typing";
 import requests from "../utils/requestq";
-import Modal from "../Components/Modal";
+import useAuth from "../hooks/useAuth";
+
 interface Props {
   netflixOriginals: Movie[];
   trendingNow: Movie[];
@@ -41,9 +42,8 @@ const Home = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16 ">
+      <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
         <Banner netflixOriginals={netflixOriginals} />
-
         <section className="md:space-y-24">
           <Row title="Trending Now" movies={trendingNow} />
           <Row title="Top Rated" movies={topRated} />

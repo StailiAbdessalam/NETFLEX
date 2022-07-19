@@ -3,7 +3,6 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import { useRef, useState } from "react";
 import { Movie } from "../typing";
 import Thumbnail from "./Thumbnail";
-
 interface Props {
   title: string;
   movies: Movie[];
@@ -11,6 +10,7 @@ interface Props {
 
 function Row({ title, movies }: Props) {
   const rowRef = useRef<HTMLDivElement>(null);
+
   const [isMoved, setIsMoved] = useState(false);
 
   const handleClick = (direction: string) => {
@@ -26,6 +26,7 @@ function Row({ title, movies }: Props) {
     }
   };
 
+  // this is a component that renders a row of thumbnails
   return (
     <div className="h-40 space-y-0.5 md:space-y-2">
       <h2 className="w-56 cursor-pointer text-sm font-semibold text-[#e5e5e5] transition duration-200 hover:text-white md:text-2xl">

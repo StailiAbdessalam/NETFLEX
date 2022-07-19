@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MuiModel from "@mui/material/Modal";
+import MuiModal from "@mui/material/Modal";
 import { modalState, movieState } from "../atoms/modalAtom";
 import { useRecoilState } from "recoil";
 import ReactPlayer from "react-player/lazy";
@@ -17,7 +17,7 @@ import { Toaster } from "react-hot-toast";
 
 const Modal = () => {
   //   const showModel = useRecoilValue(modalState);
-  const [showModel, setShowModel] = useRecoilState(modalState);
+  const [showModal, setShowModel] = useRecoilState(modalState);
   const [movie, setMovie] = useRecoilState(movieState);
   const [trailer, setTrailer] = useState<string>("");
   const [genres, setGenres] = useState<Genre[]>([]);
@@ -57,8 +57,8 @@ const Modal = () => {
     setShowModel(false);
   };
   return (
-    <MuiModel
-      open={showModel}
+    <MuiModal
+      open={showModal}
       onClose={handlClose}
       className="fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide"
     >
@@ -86,13 +86,13 @@ const Modal = () => {
                 <FaPlay className="h-7 w-7 text-black" />
                 Play
               </button>
-              <button className="modalButton">
-                {/* {addedToList ? ( */}
-                {/* <CheckIcon className="h-7 w-7" /> */}
-                {/* ) : ( */}
-                <PlusIcon className="h-7 w-7" />
-                {/* )} */}
-              </button>
+              {/* <button className="modalButton" onClick={handleList}>
+                {addedToList ? (
+                  <CheckIcon className="h-7 w-7" />
+                ) : (
+                  <PlusIcon className="h-7 w-7" />
+                )}
+              </button> */}
               <button className="modalButton">
                 <ThumbUpIcon className="h-6 w-6" />
               </button>
@@ -141,7 +141,7 @@ const Modal = () => {
           </div>
         </div>
       </>
-    </MuiModel>
+    </MuiModal>
   );
 };
 

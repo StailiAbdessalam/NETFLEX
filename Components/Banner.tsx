@@ -1,9 +1,9 @@
 import { InformationCircleIcon } from "@heroicons/react/solid";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import { baseUrl } from "../constants/Movie";
-import { Movie } from "../typing";
 import { FaPlay } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { Movie } from "../typing";
+import { baseUrl } from "../constants/Movie";
 import { useRecoilState } from "recoil";
 import { modalState, movieState } from "../atoms/modalAtom";
 

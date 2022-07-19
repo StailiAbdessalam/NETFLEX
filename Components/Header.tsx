@@ -5,9 +5,12 @@ import useAuth from "../hooks/useAuth";
 // import BasicMenu from './BasicMenu'
 
 function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+
   const { logout } = useAuth();
+
   useEffect(() => {
+    // to handl background the scroll bar on the top of the page
     const handleScroll = () => {
       if (window.scrollY > 0) {
         setIsScrolled(true);
@@ -30,7 +33,6 @@ function Header() {
           height={100}
           className="cursor-pointer object-contain"
         />
-
         {/* <BasicMenu /> */}
 
         <ul className="hidden space-x-4 md:flex">
