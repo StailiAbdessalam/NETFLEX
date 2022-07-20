@@ -32,7 +32,6 @@ const Home = ({
 }: Props) => {
   const { logout, loading } = useAuth();
   const showModel = useRecoilValue(modalState);
-  // const [showModel,setShowModel] = useState(false);
   if (loading) return null;
   return (
     <div className="lg:h-[140vh]">

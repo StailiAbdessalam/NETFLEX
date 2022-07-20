@@ -21,12 +21,10 @@ const Modal = () => {
   const [movie, setMovie] = useRecoilState(movieState);
   const [trailer, setTrailer] = useState<string>("");
   const [genres, setGenres] = useState<Genre[]>([]);
-  const [data, setData] = useState();
   const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     if (!movie) return;
-
     async function fetchMovie() {
       const data = await fetch(
         `https://api.themoviedb.org/3/${
@@ -48,8 +46,6 @@ const Modal = () => {
         setGenres(data.genres);
       }
     }
-    console.log(movie);
-
     fetchMovie();
   }, [movie]);
 

@@ -9,15 +9,13 @@ interface Props {
 }
 
 function Row({ title, movies }: Props) {
-  const rowRef = useRef<HTMLDivElement>(null);
-
   const [isMoved, setIsMoved] = useState(false);
+  const rowRef = useRef<HTMLDivElement>(null);
 
   const handleClick = (direction: string) => {
     setIsMoved(true);
     if (rowRef.current) {
       const { scrollLeft, clientWidth } = rowRef.current;
-
       const scrollTo =
         direction === "left"
           ? scrollLeft - clientWidth
